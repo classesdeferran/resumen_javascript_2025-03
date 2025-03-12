@@ -19,10 +19,16 @@ for (letra of palabra) console.log(letra);
 
 let control = true
 let i = 0
-while (!control) {  
+while (control) {  
     console.log("Hola");
     if (i == 3) {
         control = false
     }
     i += 1 // esto es lo mismo que i++
 }
+
+let condicion = "jueves"
+
+do {
+    console.log("Estaria bien que hoy fuera viernes");
+} while (condicion == "miercoles")
