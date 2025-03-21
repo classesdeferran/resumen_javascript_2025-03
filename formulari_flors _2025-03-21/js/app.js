@@ -1,6 +1,6 @@
 // Datos de trabajo
 
-const flores = [
+const flores = JSON.parse(localStorage.getItem("flores")) || [
   { nombre: "rosa", color: "rojo", floracion: "primavera", stock: true },
   { nombre: "rosa", color: "blanco", floracion: "verano", stock: true },
   { nombre: "jazmín", color: "blanco", floracion: "verano", stock: false },
@@ -133,8 +133,32 @@ function mensajeEj3(id, color, floracion, stock) {
 // ==============================================================================
 // EJERCICIO 4
 
-// Hacer un formulario para obtener una flor por su nombre.
+// Hacer un formulario para obtener una flor del array por su nombre.
 // Se mostrará el resultado en #ejercicio4
+
+const formEj4 = document.forms["formEj4"];
+const ejercicio4 = document.getElementById("ejercicio4");
+
+formEj4.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const nombre = formEj4["nombre"].value.trim().toLocaleLowerCase();
+
+  let html = "<ul>";
+  flores.forEach((flor) => {
+    console.log(flor.nombre == nombre);
+    if (flor.nombre == nombre) {
+      let textoStock = "";
+      if (!flor.stock) {
+        textoStock = "no";
+      }
+
+      html += `<li>Flor : ${flor.nombre}, de color ${flor.color}, florece en ${flor.floracion} y ${textoStock} tenemos stock.`;
+    }
+  });
+  html += "</ul>";
+
+  ejercicio4.innerHTML= html
+});
 
 // ==============================================================================
 // EJERCICIO 5
@@ -143,6 +167,33 @@ function mensajeEj3(id, color, floracion, stock) {
 // Por ejemplo:
 // flor: cyclamen, color:rosa, floracion: invierno, stock:true
 // Tiene que actualizarse automáticamente la lista del ejercicio 1
+const formEj5 = document.forms["formEj5"];
+
+formEj5.addEventListener('submit', (event) => {
+  event.preventDefault()
+
+  const nombre = formEj5['nombre'].value
+  const color = formEj5['color'].value
+  const floracion = formEj5['floracion'].value
+  const stock = formEj5['stock'].value
+
+  // nombre: nombre
+  flores.push({nombre, color, floracion, stock})
+
+
+  mostrarFlores(ejercicio1);
+
+  localStorage.setItem("flores", JSON.stringify(flores))
+
+
+
+
+
+
+
+})
+
+
 
 // ==============================================================================
 /* E X T R A S */
