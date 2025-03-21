@@ -56,6 +56,22 @@ mostrarFlores(ejercicio1)
 // Flor: rosa, de color blanco, florece en verano y tenemos stock
 // Se mostrará el resultado en #ejercicio2
 
+const ejercicio2 = document.getElementById("ejercicio2")
+
+let html = "<ul>"
+flores.forEach( (flor) => {
+  let textoStock = ""
+
+  if (flor.color == "blanco" && flor.floracion == "verano" && flor.stock === true) {
+    html += `<li>Flor : ${flor.nombre}, de color ${flor.color}, florece en ${flor.floracion} y tenemos stock.`
+  }
+
+  
+})
+
+html += "</ul>"
+
+ejercicio2.innerHTML = html
 
 
 // ==============================================================================
@@ -67,6 +83,8 @@ mostrarFlores(ejercicio1)
 // Si no hay ninguna flor que cumpla las condiciones, se mostrará este mensaje:
 // "No hay flor que cumpla las condiciones"
 // Se mostrará el resultado en #ejercicio3
+
+
 
 
 // ==============================================================================
