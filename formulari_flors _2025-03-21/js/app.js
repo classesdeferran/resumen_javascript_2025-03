@@ -25,29 +25,26 @@ flores.sort((a, b) => {
 //     console.log(flores[i]);
 // }
 
-const ejercicio1 = document.getElementById("ejercicio1")
+const ejercicio1 = document.getElementById("ejercicio1");
 
-function mostrarFlores (id) {
-let html = "<ul>"
-flores.forEach( (flor) => {
-  let textoStock = ""
+function mostrarFlores(id) {
+  let html = "<ul>";
+  flores.forEach((flor) => {
+    let textoStock = "";
 
-  if (!flor.stock) {
-    textoStock = "no"
-  }
+    if (!flor.stock) {
+      textoStock = "no";
+    }
 
-  html += `<li>Flor : ${flor.nombre}, de color ${flor.color}, florece en ${flor.floracion} y ${textoStock} tenemos stock.`
+    html += `<li>Flor : ${flor.nombre}, de color ${flor.color}, florece en ${flor.floracion} y ${textoStock} tenemos stock.`;
+  });
 
+  html += "</ul>";
 
-})
-
-html += "</ul>"
-
-id.innerHTML = html
+  id.innerHTML = html;
 }
 
-mostrarFlores(ejercicio1)
-
+mostrarFlores(ejercicio1);
 
 // ==============================================================================
 // EJERCICIO 2
@@ -56,23 +53,24 @@ mostrarFlores(ejercicio1)
 // Flor: rosa, de color blanco, florece en verano y tenemos stock
 // Se mostrará el resultado en #ejercicio2
 
-const ejercicio2 = document.getElementById("ejercicio2")
+const ejercicio2 = document.getElementById("ejercicio2");
 
-let html = "<ul>"
-flores.forEach( (flor) => {
-  let textoStock = ""
+let html = "<ul>";
+flores.forEach((flor) => {
+  let textoStock = "";
 
-  if (flor.color == "blanco" && flor.floracion == "verano" && flor.stock === true) {
-    html += `<li>Flor : ${flor.nombre}, de color ${flor.color}, florece en ${flor.floracion} y tenemos stock.`
+  if (
+    flor.color == "blanco" &&
+    flor.floracion == "verano" &&
+    flor.stock === true
+  ) {
+    html += `<li>Flor : ${flor.nombre}, de color ${flor.color}, florece en ${flor.floracion} y tenemos stock.`;
   }
+});
 
-  
-})
+html += "</ul>";
 
-html += "</ul>"
-
-ejercicio2.innerHTML = html
-
+ejercicio2.innerHTML = html;
 
 // ==============================================================================
 // EJERCICIO 3
@@ -84,15 +82,59 @@ ejercicio2.innerHTML = html
 // "No hay flor que cumpla las condiciones"
 // Se mostrará el resultado en #ejercicio3
 
+const ejercicio3 = document.getElementById("ejercicio3");
 
+const formEj3 = document.forms["formEj3"];
+const color = formEj3.color.value;
+const floracion = formEj3.floracion.value;
+const stock = formEj3["stock"].value;
+// console.log(color, floracion, stock);
 
+mensajeEj3(ejercicio3, color, floracion, stock);
+
+formEj3.addEventListener("change", () => {
+  const color = formEj3.color.value;
+  const floracion = formEj3.floracion.value;
+  const stock = formEj3["stock"].value;
+
+  // console.log(typeof stock);
+  mensajeEj3(ejercicio3, color, floracion, stock);
+});
+
+function mensajeEj3(id, color, floracion, stock) {
+  let html = "<ul>";
+  let contadorFlores = 0;
+
+  flores.forEach((flor) => {
+    if (!flor.stock) {
+      textoStock = "no";
+    }
+
+    if (
+      flor.color == color &&
+      flor.floracion == floracion &&
+      String(flor.stock) == stock
+    ) {
+      html += `<li>Flor : ${flor.nombre}, de color ${flor.color}, florece en ${flor.floracion} y ${textoStock} tenemos stock.`;
+      contadorFlores++;
+    }
+  });
+
+  html += "</ul>";
+
+  // solución 1
+  // if (html.length == 9) html = '<p>No hay flor que cumpla las condiciones</p>'
+  if (contadorFlores == 0)
+    html = "<p>No hay flor que cumpla las condiciones</p>";
+
+  id.innerHTML = html;
+}
 
 // ==============================================================================
 // EJERCICIO 4
 
 // Hacer un formulario para obtener una flor por su nombre.
 // Se mostrará el resultado en #ejercicio4
-
 
 // ==============================================================================
 // EJERCICIO 5
@@ -102,8 +144,7 @@ ejercicio2.innerHTML = html
 // flor: cyclamen, color:rosa, floracion: invierno, stock:true
 // Tiene que actualizarse automáticamente la lista del ejercicio 1
 
-
-// ============================================================================== 
+// ==============================================================================
 /* E X T R A S */
 
 // ==============================================================================
