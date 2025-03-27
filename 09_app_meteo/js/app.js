@@ -3,7 +3,7 @@ import key from "./key.js"
 console.log(key);
 
 
-const appid = "57dd0d67b602215d88c9f993d422a09b"
+const appid = key
 const ciudad = "Anchorage"
 const idioma = "es"
 let url = `https://api.openweathermap.org/data/2.5/weather?appid=${appid}&units=metric&lang=${idioma}&q=${ciudad}`
